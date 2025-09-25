@@ -3,7 +3,8 @@
 FROM node:18-alpine AS build
 WORKDIR /usr/src/app
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm install
+COPY . .
 
 # Stage 2: Create the final production image
 FROM node:18-alpine
