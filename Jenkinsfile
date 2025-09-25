@@ -64,4 +64,4 @@ pipeline {
 
 
 
-/* docker.withRegistry(url:'https://hub.docker.com/repositories/jegadhish24', env.DOCKERHUB_CREDENTIALS_ID) 
+
