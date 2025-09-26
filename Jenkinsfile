@@ -50,7 +50,6 @@ pipeline {
                     }
                 }
             }
-        }
         
         stage('Clean up') {
             steps {
