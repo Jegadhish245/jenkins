@@ -9,7 +9,7 @@ pipeline {
         // Tag the image with the build number and Docker Hub details
         DOCKER_IMAGE_NAME = "jegadhish24/node-app"
         BUILD_TAG = "${env.BUILD_NUMBER}"
-        DOCKER_IMAGE_TAG = "${DOCKER_IMAGE_NAME}:${BUILD_TAG}"
+        DOCKER_IMAGE_TAG = "${DOCKER_IMAGE_NAME}"
         // ID of your Jenkins credentials for Docker Hub
     }
 
@@ -25,7 +25,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "docker build -t ${DOCKER_IMAGE_TAG} ."
+                    sh "docker build -t ${DOCKER_IMAGE_TAG}${BUILD_TAG} ."
                 }
             }
         }
