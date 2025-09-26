@@ -44,7 +44,11 @@ pipeline {
                 // Push the image to Docker Hub using stored credentials
                 script {
                     withDockerRegistry(credentialsId: 'docker-hub-crds', url: 'https://hub.docker.com/repository/docker/jegadhish24/demo/general') {
-                        sh "docker push ${DOCKER_IMAGE_TAG}"
+                        script {
+                        sh "echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin"
+                        sh "docker push $IMAGE"
+                        sh "docker logout"  
+                        }
                     }
                 }
             }
