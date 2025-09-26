@@ -10,7 +10,6 @@ pipeline {
         DOCKER_IMAGE_NAME = "jegadhish24/node-app"
         DOCKER_IMAGE_TAG = "${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}"
         // ID of your Jenkins credentials for Docker Hub
-        DOCKERHUB_CREDENTIALS_ID = "docker-hub-crds"
     }
 
     // Define the stages of the pipeline
@@ -42,8 +41,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 // Push the image to Docker Hub using stored credentials
-                script {
-                    withDockerRegistry(credentialsId: 'docker-hub-crds', url: 'https://hub.docker.com/repository/docker/jegadhish24/demo/general') {
+                withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                         script {
                         sh "echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin"
                         sh "docker push $IMAGE"
