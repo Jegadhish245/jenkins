@@ -7,7 +7,7 @@ pipeline {
     // Define environment variables
     environment {
         // Tag the image with the build number and Docker Hub details
-        DOCKER_IMAGE_NAME = "your-dockerhub-username/node-app"
+        DOCKER_IMAGE_NAME = "jegadhish24/node-app"
         DOCKER_IMAGE_TAG = "${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}"
         // ID of your Jenkins credentials for Docker Hub
         DOCKERHUB_CREDENTIALS_ID = "docker-hub-crds"
